@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Brain Trainer</string>
+    <string name="reset">Reset</string>
+    <string name="start">Start</string>
+    <string name="thirty_seconds">:30</string>
+    <string name="zero_of_zero">0/0</string>
+    <string name="nine_plus_six">9 + 6</string>
+    <string name="fifteen">15</string>
+    <string name="correct">You got %d correct!</string>
 </resources>

@@ -13,11 +13,11 @@
         android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=":30"
+        android:text="@string/thirty_seconds"
         android:textColor="@color/darkGrey"
         android:id="@+id/timerDisplay"
         android:textSize="30sp"
-        android:textAlignment="center"
+        android:gravity="center"
         android:background="@drawable/rounded_corners"
         android:layout_alignParentTop="true" />
 
@@ -25,7 +25,7 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0/0"
+        android:text="@string/zero_of_zero"
         android:textColor="@color/darkGrey"
         android:id="@+id/scoreDisplay"
         android:textSize="30sp"

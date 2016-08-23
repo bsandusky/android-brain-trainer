@@ -30,16 +30,18 @@ public class MainActivity extends AppCompatActivity {
     public void resetGame() {
         gameIsActive = false;
         timer.cancel();
-        controlButton.setText("Start");
-        timerDisplay.setText(":30");
-        scoreDisplay.setText("0/0");
-        promptText.setText("9 + 6");
+        controlButton.setText(R.string.start);
+        timerDisplay.setText(R.string.thirty_seconds);
+        scoreDisplay.setText(R.string.zero_of_zero);
+        promptText.setText(R.string.nine_plus_six);
         gameEndText.setVisibility(View.INVISIBLE);
         promptText.setVisibility(View.VISIBLE);
+        scoreCount = 0;
+        totalAnswered = 0;
 
         for (int j=0; j<gridLayout.getChildCount(); j++) {
             TextView x = (TextView) gridLayout.getChildAt(j);
-            x.setText("15");
+            x.setText(R.string.fifteen);
         }
     }
 
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setBoard() {
-        scoreDisplay.setText(String.format("%d/%d", scoreCount,totalAnswered));
+        scoreDisplay.setText(String.format("%d/%d",scoreCount,totalAnswered));
         ArrayList round = generateRandom(1,100,2);
         ArrayList randomTile = generateRandom(0,3,1);
         ArrayList others = generateRandom(1,200,4);
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView t1 = (TextView) gridLayout.getChildAt(tile);
         t1.setText(Integer.toString(answer));
-        promptText.setText(String.format("%d + %d", round.get(0), round.get(1)));
+        promptText.setText(String.format("%d + %d",round.get(0),round.get(1)));
 
         for (int j=0; j<4; j++) {
 
@@ -86,8 +88,14 @@ public class MainActivity extends AppCompatActivity {
 
         if(!gameIsActive) {
             gameIsActive = true;
-            controlButton.setText("Reset");
+            controlButton.setText(R.string.reset);
             setBoard();
+
+            for (int j=0; j<gridLayout.getChildCount(); j++) {
+                TextView x = (TextView) gridLayout.getChildAt(j);
+                x.setEnabled(true);
+            }
+
             timer = new CountDownTimer(10000 + 100, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -97,14 +105,19 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
+                    timerDisplay.setText(":00");
                     promptText.setVisibility(View.INVISIBLE);
-                    gameEndText.setText("You got " + scoreCount + " correct!");
+                    gameEndText.setText(String.format(getResources().getString(R.string.correct), scoreCount));
                     gameEndText.setVisibility(View.VISIBLE);
+
+                    for (int j=0; j<gridLayout.getChildCount(); j++) {
+                        TextView x = (TextView) gridLayout.getChildAt(j);
+                        x.setEnabled(false);
+                    }
                 }
             }.start();
 
         } else {
-
             resetGame();
         }
 

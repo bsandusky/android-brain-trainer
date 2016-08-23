@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 x.setEnabled(true);
             }
 
-            timer = new CountDownTimer(10000 + 100, 1000) {
+            timer = new CountDownTimer(30000 + 100, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     int seconds = (int) millisUntilFinished/1000;

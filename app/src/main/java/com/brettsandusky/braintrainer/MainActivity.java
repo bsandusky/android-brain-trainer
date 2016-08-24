@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         for (int j=0; j<gridLayout.getChildCount(); j++) {
             TextView x = (TextView) gridLayout.getChildAt(j);
             x.setText(R.string.fifteen);
+            x.setEnabled(false);
         }
     }
 
@@ -77,11 +78,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleTileClick(View v) {
-        if (v.getTag().equals(String.valueOf(tile))) {
-            scoreCount++;
+
+        if (gameIsActive) {
+            if (v.getTag().equals(String.valueOf(tile))) {
+                scoreCount++;
+            }
+            totalAnswered++;
+            setBoard();
         }
-        totalAnswered++;
-        setBoard();
+
     }
 
     public void handleControlButtonClick(View v) {
